@@ -1,6 +1,7 @@
 //! [ArceOS-Hypervisor](https://github.com/arceos-hypervisor/arceos-umhv) [VM](https://github.com/arceos-hypervisor/axvm) config module.
 //! [`AxVMCrateConfig`]: the configuration structure for the VM.
 //! It is generated from toml file, and then converted to `AxVMConfig` for the VM creation.
+#![cfg_attr(not(feature = "std"), no_std)]
 
 extern crate alloc;
 #[macro_use]
@@ -34,6 +35,12 @@ impl From<usize> for VMType {
                 Self::default()
             }
         }
+    }
+}
+
+impl From<VMType> for usize {
+    fn from(value: VMType) -> Self {
+        value as usize
     }
 }
 
@@ -111,7 +118,6 @@ pub struct AxVMCrateConfig {
     pub vm_type: usize,
 
     // Resources.
-
     /// The number of virtual CPUs.
     pub cpu_num: usize,
     /// The physical CPU ids.
