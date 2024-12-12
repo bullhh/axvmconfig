@@ -103,12 +103,15 @@ pub struct PassThroughDeviceConfig {
 /// and then converted to `AxVMConfig` for the VM creation.
 #[derive(Debug, Default, Clone, serde::Serialize, serde::Deserialize)]
 pub struct AxVMCrateConfig {
-    // Basic Information
+    /// VM ID.
     pub id: usize,
+    /// VM name.
     pub name: String,
+    /// VM type.
     pub vm_type: usize,
 
     // Resources.
+
     /// The number of virtual CPUs.
     pub cpu_num: usize,
     /// The physical CPU ids.
@@ -129,6 +132,7 @@ pub struct AxVMCrateConfig {
     ///      It will phrase an error if the number of vCpus is not equal to the length of `phys_cpu_sets` array.
     pub phys_cpu_sets: Option<Vec<usize>>,
 
+    /// The entry point of the kernel image.
     pub entry_point: usize,
 
     /// The file path of the kernel image.
